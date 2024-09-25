@@ -1,0 +1,36 @@
+import errorStoreModule from '@/@hiway/store-module/errorStoreModule'
+import codeStoreModule from '@/store/app/codeStoreModule'
+import jsonlayoutStoreModule from '@/store/app/jsonlayoutStoreModule'
+import appConfigStoreModule from '@core/@app-config/appConfigStoreModule'
+import logSotreModule from '@hiway/store-module/logSotreModule'
+import menuStoreModule from '@hiway/store-module/menuStoreModule'
+import tagsView from '@hiway/store-module/tagsViewStoreModule'
+import userStoreModule from '@hiway/store-module/userStoreModule'
+import Vue from 'vue'
+import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import app from './app'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {},
+  mutations: {},
+  actions: {},
+  modules: {
+    appConfig: appConfigStoreModule,
+    app,
+    log: logSotreModule,
+    user: userStoreModule,
+    menu: menuStoreModule,
+    error: errorStoreModule,
+    code: codeStoreModule,
+    tagsView,
+    jsonlayout: jsonlayoutStoreModule,
+  },
+  plugins: [
+    createPersistedState({
+      paths: ['jsonlayout'], // jsonlayout 모듈만 저장합니다.
+    }),
+  ],
+})
